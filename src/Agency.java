@@ -228,6 +228,50 @@ public class Agency {
 		br.close();
 	}
 	
+	public void loadTripsOfRoute(String tr_file_path, String route_id) throws Exception {
+		String cLine;
+		String[] fields;
+		String[] values;
+		
+		BufferedReader br = new BufferedReader(
+			    new InputStreamReader(
+			        new FileInputStream(tr_file_path),
+			        "UTF-8"));
+		
+		br.mark(1);
+		if (br.read() != 0xFEFF)
+		  br.reset();
+		//--------
+		cLine = br.readLine();
+		
+		fields = cLine.split(",", -1);
+		
+		/*
+		 * Figure out at what index the route_id is
+		 */
+		
+		int rt_i = Utilities.getIndexOfField(fields, "route_id");
+		
+		if (rt_i == -1) {
+			br.close();
+			throw new Exception();
+		}
+		cLine = br.readLine();
+		while (cLine != null) {
+			values = cLine.split(",", -1);
+			
+			if (values[rt_i].equals(route_id)) { //only if the route_id is the one we're looking for, add Trip
+				trips.add(new Trip(fields, values));
+			}
+			
+			cLine = br.readLine();
+		}
+		
+		
+		//close the readers
+		br.close();
+	}
+	
 	public void assignTripsToRoutes() {
 		String parent_rt;
 		for (int i = 0; i < trips.size(); i++) {
@@ -271,6 +315,44 @@ public class Agency {
 		br.close();
 	}
 	
+	
+	public void loadStopTimesOfTrip(String st_file_path, String trip_id) throws Exception {
+		String cLine;
+		String[] fields;
+		String[] values;
+		
+		BufferedReader br = new BufferedReader(
+			    new InputStreamReader(
+			        new FileInputStream(st_file_path),
+			        "UTF-8"));
+		
+	
+		br.mark(1);
+		if (br.read() != 0xFEFF)
+		  br.reset();
+		
+		cLine = br.readLine();
+		
+		fields = cLine.split(",", -1);
+		
+		int tr_i = Utilities.getIndexOfField(fields, "trip_id");
+		
+		cLine = br.readLine();
+		while (cLine != null) {
+			values = cLine.split(",",-1);
+			
+			if (values[tr_i].equals(trip_id)) {
+				stoptimes.add(new StopTime(fields, values));
+			}
+			
+			cLine = br.readLine();
+		}
+
+		
+		//close the readers
+		br.close();
+	}
+	
 	public void assignStopTimesToTrips() {
 		for (int i = 0; i < stoptimes.size(); i++) {
 			String trip = stoptimes.get(i).getParentTripId();
@@ -283,6 +365,37 @@ public class Agency {
 	}
 	
 	public void loadStops(String stop_file_path) throws Exception {
+		String cLine;
+		String[] fields;
+		String[] values;
+		
+		BufferedReader br = new BufferedReader(
+			    new InputStreamReader(
+			        new FileInputStream(stop_file_path),
+			        "UTF-8"));
+		
+	
+		br.mark(1);
+		if (br.read() != 0xFEFF)
+		  br.reset();
+		
+		cLine = br.readLine();
+		
+		fields = cLine.split(",", -1);
+		cLine = br.readLine();
+		while (cLine != null) {
+			values = cLine.split(",",-1);
+			stops.add(new Stop(fields, values));
+			
+			cLine = br.readLine();
+		}
+
+		
+		//close the readers
+		br.close();
+	}
+	
+	public void loadStopsOf(String stop_file_path) throws Exception {
 		String cLine;
 		String[] fields;
 		String[] values;

@@ -1,19 +1,22 @@
+import java.util.Scanner;
+
 public class ReadFiles {
 	public static void main(String[] args) {
 		
 		try {
 			Agency ag = new Agency("agency.txt");
 			ag.loadRoutes("routes.txt");
-			ag.loadTrips("trips.txt");
+			//ag.loadTrips("trips.txt");
+			//ag.loadTripsOfRoute("trips.txt", "152-170");
 			//ag.assignTripsToRoutes();
-			ag.loadStopTimes("stop_times.txt");
+			//ag.loadStopTimesOfTrip("stop_times.txt", "32256431-SEPT14-SEP14DA-Weekday-10");
 			//ag.assignStopTimesToTrips();
-			ag.loadStops("stops.txt");
+			//ag.loadStops("stops.txt");
 			//ag.assignStopsToStopTimes();
-			ag.loadCalendars("calendar.txt");
+			//ag.loadCalendars("calendar.txt");
 			//ag.assignCalendarsToTrips();
 			
-			
+			/*
 			for (int i = 0; i < ag.getListOfRoutes().size(); i++) {
 				System.out.println(ag.getListOfRoutes().get(i));
 				
@@ -29,14 +32,30 @@ public class ReadFiles {
 				
 				
 			}
+			*/
 			
-			System.out.println(ag.getListOfRoutes().size() + " routes");
-			System.out.println(ag.getListOfTrips().size() + " trips");
+			System.out.println("Agency: " + ag.getName() + " . Available Routes: ");
+			
+			for (int i = 0; i < ag.getListOfRoutes().size(); i++) {
+				System.out.println(ag.getListOfRoutes().get(i).toString());
+			}
+			System.out.print("Enter Route: ");
 
 			
 			
+			Scanner s = new Scanner(System.in);
+			String input = s.nextLine();
 			
 			
+			ag.loadTripsOfRoute("trips.txt", input);
+			
+			for(int i = 0; i < ag.getListOfTrips().size(); i++) {
+				System.out.println(ag.getListOfTrips().get(i).toString());
+			}
+			
+			
+			
+			s.close();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
