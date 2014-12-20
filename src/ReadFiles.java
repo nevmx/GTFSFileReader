@@ -11,9 +11,9 @@ public class ReadFiles {
 			//ag.assignTripsToRoutes();
 			//ag.loadStopTimesOfTrip("stop_times.txt", "32256431-SEPT14-SEP14DA-Weekday-10");
 			//ag.assignStopTimesToTrips();
-			//ag.loadStops("stops.txt");
+			ag.loadStops("stops.txt");
 			//ag.assignStopsToStopTimes();
-			//ag.loadCalendars("calendar.txt");
+			ag.loadCalendars("calendar.txt");
 			//ag.assignCalendarsToTrips();
 			
 			/*
@@ -48,12 +48,21 @@ public class ReadFiles {
 			
 			
 			ag.loadTripsOfRoute("trips.txt", input);
+			ag.assignCalendarsToTrips();
 			
 			for(int i = 0; i < ag.getListOfTrips().size(); i++) {
 				System.out.println(ag.getListOfTrips().get(i).toString());
 			}
 			
+			System.out.print("Enter Trip: ");
+			input = s.nextLine();
+			ag.loadStopTimesOfTrip("stop_times.txt", input);
+			ag.assignStopsToStopTimes();
 			
+			
+			for(int i = 0; i < ag.getListOfStopTimes().size(); i++) {
+				System.out.println(ag.getListOfStopTimes().get(i).toString() + ag.getListOfStopTimes().get(i).getStopInfo());
+			}
 			
 			s.close();
 			

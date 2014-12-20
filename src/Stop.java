@@ -1,9 +1,5 @@
 public class Stop {
 	
-	/*
-	 * COMMENTED OUT VARS ARE NOT USED FOR CURRENT AGENCY
-	 */
-	
 	private String id;
 	private String code;
 	private String name;

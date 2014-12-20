@@ -152,6 +152,12 @@ public class Agency {
 		
 	}
 	
+	public ArrayList<StopTime> getListOfStopTimes() {
+		
+		return this.stoptimes;
+		
+	}
+	
 	/*
 	 * END TRIPS
 	 */
@@ -395,47 +401,18 @@ public class Agency {
 		br.close();
 	}
 	
-	public void loadStopsOf(String stop_file_path) throws Exception {
-		String cLine;
-		String[] fields;
-		String[] values;
-		
-		BufferedReader br = new BufferedReader(
-			    new InputStreamReader(
-			        new FileInputStream(stop_file_path),
-			        "UTF-8"));
-		
-	
-		br.mark(1);
-		if (br.read() != 0xFEFF)
-		  br.reset();
-		
-		cLine = br.readLine();
-		
-		fields = cLine.split(",", -1);
-		cLine = br.readLine();
-		while (cLine != null) {
-			values = cLine.split(",",-1);
-			stops.add(new Stop(fields, values));
-			
-			cLine = br.readLine();
-		}
-
-		
-		//close the readers
-		br.close();
-	}
 	
 	public void assignStopsToStopTimes() {
-		for (int i = 0; i < stops.size(); i++) {
-			String stop_id = stops.get(i).getId();
-			for (int j = 0; j < stoptimes.size(); j++) {
-				if (stop_id.equals(stoptimes.get(j).getId())) {
-					stoptimes.get(j).assignStopToStopTime((stops.get(i)));
+		for (int i = 0; i < stoptimes.size(); i++) {
+			String stop_id = stoptimes.get(i).getId();
+			for (int j = 0; j < stops.size(); j++) {
+				if (stop_id.equals(stops.get(j).getId())) {
+					stoptimes.get(i).assignStopToStopTime((stops.get(j)));
 				}
 			}
 		}
 	}
+	
 	public void loadCalendars(String cal_file_path) throws Exception {
 		String cLine;
 		String[] fields;
