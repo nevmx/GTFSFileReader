@@ -9,7 +9,6 @@ public class Agency {
 	private String agency_lang;
 	private String agency_phone;
 	private String agency_fare_url;
-	private String file_path;
 	
 	private ArrayList<Route> routes = new ArrayList<Route>();
 	
@@ -26,16 +25,13 @@ public class Agency {
 	 */
 
 	public Agency(String file_path) throws Exception {
-		this.file_path = file_path;
-		
 		String cLine;
 		String[] fields;
 		String[] values;
 		
-		FileReader fr = new FileReader(this.file_path);
 		BufferedReader br = new BufferedReader(
 			    new InputStreamReader(
-			        new FileInputStream(this.file_path),
+			        new FileInputStream(file_path),
 			        "UTF-8"));
 		
 		br.mark(1);
@@ -50,7 +46,6 @@ public class Agency {
 		
 		if (fields.length != values.length) {
 			br.close();
-			fr.close();
 			throw new Exception();
 		}
 		
@@ -78,9 +73,11 @@ public class Agency {
 			}
 		}
 		br.close();
-		fr.close();
-		
 	}
+	
+	/*
+	 * END CONSTRUCTOR
+	 */
 	
 	/*
 	 * GETTER METHODS
@@ -95,7 +92,7 @@ public class Agency {
 	public String getName() {
 		return this.agency_name;
 	}
-	public String getTimezone() {
+	public String getTimeZone() {
 		return this.agency_timezone;
 	}
 	public String getLang() {
@@ -109,72 +106,30 @@ public class Agency {
 	}
 	
 	/*
-	 * ROUTES
+	 * ARRAYLIST GETTER METHODS
 	 */
-	
-	public Route getRoute(String id) {
-		Route r;
-		for (int i = 0; i < routes.size(); i++) {
-			r = routes.get(i);
-			if (r.getId().equals(id))
-				return r;
-		}
-		return null;
-	}
-	
-	public int getNumberRoutes() {
-		return this.routes.size();
-	}
 	
 	public ArrayList<Route> getListOfRoutes() {
-		
 		return this.routes;
-		
 	}
-	
-	/*
-	 * END ROUTES
-	 */
-	
-	
-	/*
-	 * TRIPS
-	 */
-	
-	
-	public int getNumberTrips() {
-		return this.trips.size();
-	}
-	
 	public ArrayList<Trip> getListOfTrips() {
-		
 		return this.trips;
-		
 	}
-	
 	public ArrayList<StopTime> getListOfStopTimes() {
-		
 		return this.stoptimes;
-		
 	}
-	
-	/*
-	 * END TRIPS
-	 */
+	public ArrayList<Stop> getListOfStops() {
+		return this.stops;
+	}
 	
 	/*
 	 * END GETTER METHODS
 	 */
-	
+
 	/*
-	 * SETTER METHODS
+	 * LOADER METHODS
 	 */
 	
-	
-	
-	/*
-	 * END SETTER METHODS
-	 */
 	public void loadRoutes(String rt_file_path) throws Exception {
 		String cLine;
 		String[] fields;

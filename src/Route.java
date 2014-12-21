@@ -68,7 +68,7 @@ public class Route {
 	 */
 	
 	/*
-	 * ADDER (?) METHOD
+	 * ADDER METHOD
 	 */
 	
 	public void assignTripToRoute(Trip tr) {
@@ -78,7 +78,7 @@ public class Route {
 	public String toString() {
 		String str;
 		
-		str = "Route " + this.long_name + " (" + this.id + ") " + " of agency " + this.agency_id;
+		str = "Route: " + this.long_name + " [" + this.id + "]";
 		
 		return str;
 	}

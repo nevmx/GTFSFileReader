@@ -56,7 +56,7 @@ public class StopTime {
 	}
 	public String toString() {
 		String str;
-		str = this.stop_id + " at " + this.arrival_time;
+		str = "[" + this.stop_id + "] at " + this.arrival_time;
 		return str;
 	}
 	public void assignStopToStopTime(Stop st) {

@@ -91,7 +91,7 @@ public class Trip {
 	}
 	public String toString() {
 			String str;
-			str = "Trip: " + this.trip_headsign + "  " + this.trip_id + "Service: " + this.service_id + ", " + this.service_calendar;
+			str = "Trip: " + this.trip_headsign + "  [" + this.trip_id + "] Service: [" + this.service_id + "] " + this.service_calendar;
 			return str;
 	}
 	/*

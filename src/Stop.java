@@ -45,7 +45,7 @@ public class Stop {
 	
 	public String toString() {
 		String str;
-		str = "Stop ID: " + this.id + " at " + this.name;
+		str = " Stop ID: [" + this.id + "] at " + this.name;
 		return str;
 	}
 	
