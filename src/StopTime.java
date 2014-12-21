@@ -1,3 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gtfs.reader;
+
+/**
+ *
+ * @author Max
+ */
 public class StopTime {
 	private String trip_id;
 	private String arrival_time;
@@ -56,10 +67,13 @@ public class StopTime {
 	}
 	public String toString() {
 		String str;
-		str = "[" + this.stop_id + "] at " + this.arrival_time;
+		str =  this.arrival_time + " at [" + this.stop_id + "] " + this.getStopInfo();
 		return str;
 	}
 	public void assignStopToStopTime(Stop st) {
 		this.stop_info = st;
 	}
+        public String getDepTime() {
+            return this.departure_time;
+        }
 }

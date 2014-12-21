@@ -1,3 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gtfs.reader;
+
+/**
+ *
+ * @author Max
+ */
 import java.util.Arrays;
 public class Calendar {
 	private String service_id;
@@ -85,7 +96,7 @@ public class Calendar {
 	public String toString() {
 		String str = "";
 		
-		str+="From " + this.start_date + " to " + this.end_date + " on ";
+		//str+="From " + this.start_date + " to " + this.end_date + " on ";
 		
 		if (week[0] == true) {
 			str+=" Mon";

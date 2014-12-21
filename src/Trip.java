@@ -1,3 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gtfs.reader;
+
+/**
+ *
+ * @author Max
+ */
 import java.util.*;
 
 public class Trip {
@@ -91,7 +102,7 @@ public class Trip {
 	}
 	public String toString() {
 			String str;
-			str = "Trip: " + this.trip_headsign + "  [" + this.trip_id + "] Service: [" + this.service_id + "] " + this.service_calendar;
+			str = this.trip_id + this.service_calendar;
 			return str;
 	}
 	/*
